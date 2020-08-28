@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int sizeArr, sum;
+vector<int> v;
+int main() {
+	//code
+	int numInput;
+	cin >> numInput;
+	for(int i = 0; i< numInput; ++i){
+	    cin >> sizeArr >> sum;
+	    v.resize(sizeArr+1);
+	    for(int j = 1; j < sizeArr + 1; ++j){
+	        cin >> v[j];
+	    }
+	    bool found = false;
+	    int start = 1;
+	    int end = 1;
+	    int currSum = v[1];
+	    if(currSum == sum)
+	        found = true;
+	    while(!found &&end < sizeArr + 1){
+	        end++;
+	        currSum +=v[end];
+	        while(currSum > sum){
+	            currSum -= v[start];
+	            start++;
+	        }
+	        if(currSum == sum)
+	            found = true;
+	    }
+	    if(found)
+	        cout <<start <<" " <<end<<"\n";
+	   else
+	    cout <<-1 <<"\n";
+	}
+	return 0;
+}
